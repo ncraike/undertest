@@ -1,5 +1,5 @@
 
-from undertest.functionundertest import FunctionUnderTest
+from undertest import FunctionUnderTest
 
 def test_function__with_no_args():
 
