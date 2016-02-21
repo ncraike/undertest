@@ -89,3 +89,20 @@ def test_function__with_args_and_kwargs():
     assert f.args_given == (1, 2)
     assert f.kwargs_given == {'a': 'x', 'b': 'y'}
     assert f_undertest.result == 'f result'
+
+def test_function__with_args_and_kwargs_added_later():
+
+    def f(*args, **kwargs):
+        f.was_called = True
+        f.args_given = args
+        f.kwargs_given = kwargs
+        return 'f result'
+
+    f_undertest = FunctionUnderTest(f, 1, 2, a='x', b='y')
+    f_undertest.add_args(3, 4, b='z', c='w')
+    result = f_undertest.call()
+
+    assert f.was_called
+    assert f.args_given == (1, 2, 3, 4)
+    assert f.kwargs_given == {'a': 'x', 'b': 'z', 'c': 'w'}
+    assert f_undertest.result == 'f result'
