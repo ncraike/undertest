@@ -1,7 +1,7 @@
 
 from undertest import FunctionUnderTest
 
-def test_function__with_no_args():
+def test_FunctionUnderTest__with_no_args():
 
     def f():
         f.was_called = True
@@ -13,7 +13,7 @@ def test_function__with_no_args():
     assert f.was_called
     assert f_undertest.result == 'f result'
 
-def test_function__with_args():
+def test_FunctionUnderTest__with_args():
 
     def f(*args):
         f.was_called = True
@@ -27,7 +27,7 @@ def test_function__with_args():
     assert f.args_given == (1, 2)
     assert f_undertest.result == 'f result'
 
-def test_function__with_more_args_added_after_creation():
+def test_FunctionUnderTest__with_more_args_added_after_creation():
 
     def f(*args):
         f.was_called = True
@@ -42,7 +42,7 @@ def test_function__with_more_args_added_after_creation():
     assert f.args_given == (1, 2, 3, 4)
     assert f_undertest.result == 'f result'
 
-def test_function__with_kwargs():
+def test_FunctionUnderTest__with_kwargs():
 
     def f(*args, **kwargs):
         f.was_called = True
@@ -58,7 +58,7 @@ def test_function__with_kwargs():
     assert f.kwargs_given == {'a': 1, 'b': 2}
     assert f_undertest.result == 'f result'
 
-def test_function__with_kwargs_added_later():
+def test_FunctionUnderTest__with_kwargs_added_later():
 
     def f(*args, **kwargs):
         f.was_called = True
@@ -74,7 +74,7 @@ def test_function__with_kwargs_added_later():
     assert f.kwargs_given == {'a': 1, 'b': 3, 'c': 4}
     assert f_undertest.result == 'f result'
 
-def test_function__with_args_and_kwargs():
+def test_FunctionUnderTest__with_args_and_kwargs():
 
     def f(*args, **kwargs):
         f.was_called = True
@@ -90,7 +90,7 @@ def test_function__with_args_and_kwargs():
     assert f.kwargs_given == {'a': 'x', 'b': 'y'}
     assert f_undertest.result == 'f result'
 
-def test_function__with_args_and_kwargs_added_later():
+def test_FunctionUnderTest__with_args_and_kwargs_added_later():
 
     def f(*args, **kwargs):
         f.was_called = True
