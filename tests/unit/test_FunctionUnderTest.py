@@ -106,3 +106,23 @@ def test_FunctionUnderTest__with_args_and_kwargs_added_later():
     assert f.args_given == (1, 2, 3, 4)
     assert f.kwargs_given == {'a': 'x', 'b': 'z', 'c': 'w'}
     assert f_undertest.result == 'f result'
+
+def test_FunctionUnderTest__expected_exception_caught():
+
+    class E(Exception):
+        pass
+
+    def f(*args, **kwargs):
+        f.was_called = True
+        raise E()
+
+    f_undertest = FunctionUnderTest(f)
+    f_undertest.expect_exception(E)
+
+    result = f_undertest.call()
+
+    assert f.was_called
+    assert f_undertest.result == FunctionUnderTest.NO_RESULT_AS_EXCEPTION_RAISED
+    assert isinstance(
+            f_undertest.exception_caught,
+            tuple(f_undertest.expected_exceptions))
